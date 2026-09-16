@@ -4,21 +4,34 @@
    does not contain the elements it looks after.
    ============================================================ */
 
-/* ---- vimeo embeds: <figure data-vimeo="ID"> or "ID/hash"; empty = removed ---- */
+/* ---- vimeo embeds: <figure data-vimeo="ID"> or "ID/hash"; empty = removed ----
+   Click to play: the cover image (and Vimeo's own thumbnail behind it) shows in
+   full until someone presses play. Only then does the iframe load, so a vertical
+   video's letterbox bars never flash on page load. ---- */
 (function(){
   var figs=document.querySelectorAll('[data-vimeo]');
   if(!figs.length)return;
   figs.forEach(function(fig){
     var parts=(fig.getAttribute('data-vimeo')||'').trim().split('/');
     if(!/^\d+$/.test(parts[0])){fig.remove();return}
-    var src='https://player.vimeo.com/video/'+parts[0]+'?dnt=1&title=0&byline=0&portrait=0'+(parts[1]?'&h='+encodeURIComponent(parts[1]):'');
-    var f=document.createElement('iframe');
-    f.src=src;
-    f.loading='lazy';
-    f.title=document.title.split(' — ')[0]+' — full film';
-    f.allow='autoplay; fullscreen; picture-in-picture';
-    f.setAttribute('allowfullscreen','');
-    fig.insertBefore(f,fig.firstChild);
+    var src='https://player.vimeo.com/video/'+parts[0]+'?dnt=1&title=0&byline=0&portrait=0&autoplay=1'
+      +(parts[1]?'&h='+encodeURIComponent(parts[1]):'');
+    var btn=document.createElement('button');
+    btn.type='button';
+    btn.className='play-btn';
+    btn.setAttribute('aria-label','Play video');
+    btn.innerHTML='<span></span>';
+    function play(){
+      var f=document.createElement('iframe');
+      f.src=src;
+      f.title=document.title.split(' — ')[0]+' — video';
+      f.allow='autoplay; fullscreen; picture-in-picture';
+      f.setAttribute('allowfullscreen','');
+      fig.insertBefore(f,fig.firstChild);
+      btn.remove();
+    }
+    btn.addEventListener('click',play);
+    fig.appendChild(btn);
   });
 })();
 
