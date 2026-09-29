@@ -24,7 +24,7 @@
     function play(){
       var f=document.createElement('iframe');
       f.src=src;
-      f.title=document.title.split(' — ')[0]+' — video';
+      f.title=document.title.split(/ [—·] /)[0]+' · video';
       f.allow='autoplay; fullscreen; picture-in-picture';
       f.setAttribute('allowfullscreen','');
       fig.insertBefore(f,fig.firstChild);
@@ -162,20 +162,20 @@
   'ae+fg':['Motion agreed before a frame is rendered','Prototype the movement in the design file, so revisions cost minutes instead of renders.'],
   'ae+ll':['Bulk video variants without the bulk work','One motion system, copy per audience, renders queued. You approve; the fan does the rest.'],
   'ae+n8':['An explainer for the thing you just automated','Nobody adopts a workflow they cannot picture. Forty seconds of motion beats the ten-page manual nobody opened.'],
-  'ae+pr':['Campaign cutdowns in every ratio your placements need','One shoot, one motion system, every format — no redesign per platform.'],
+  'ae+pr':['Campaign cutdowns in every ratio your placements need','One shoot, one motion system, every format, with no redesign per platform.'],
   'ae+ps':['Composited motion built from stills','Photography that moves, for when a shoot is not in the budget.'],
   'ae+wb':['A landing page that moves when it should','Motion used to explain the product, not to decorate the scroll.'],
   'ai+fg':['One identity, applied consistently','Built as a design system, in the file your team already works in.'],
-  'ai+ll':['Naming and identity explored at speed','Forty directions before lunch. Thirty-nine get deleted — that is the exercise.'],
-  'ai+n8':['Brand assets generated on request','Certificates, badges, social cards — one template filled automatically, always on-brand.'],
+  'ai+ll':['Naming and identity explored at speed','Forty directions before lunch. Thirty-nine get deleted, and that is the exercise.'],
+  'ai+n8':['Brand assets generated on request','Certificates, badges, social cards: one template filled automatically, always on brand.'],
   'ai+pr':['Titles and graphics that belong to the film','Type, lower thirds and end cards cut from the same identity as everything else.'],
   'ai+ps':['A brand kit that survives contact with real content','Marks, type and colour, plus the rules that keep it intact once someone else opens the file.'],
   'ai+wb':['Identity straight into a live page','Nothing lost between the logo file and the thing people actually land on.'],
   'fg+ll':['Interfaces written as carefully as they are drawn','Copy, empty states and error text designed in, not filled in at the end.'],
   'fg+n8':['A design system fed by real data','Components that update from the source instead of being retyped every quarter.'],
   'fg+pr':['Product footage that matches the product','Screens cut from the real interface, so the video never shows a version that does not exist.'],
-  'fg+ps':['Mockups that look like photographs','Interface placed in real scenes — the slide where people forget it is still a prototype.'],
-  'fg+wb':['A site designed in the browser, not guessed in a mockup','What you approve is what ships — at every screen size, not just the one in the deck.'],
+  'fg+ps':['Mockups that look like photographs','Interface placed in real scenes: the slide where people forget it is still a prototype.'],
+  'fg+wb':['A site designed in the browser, not guessed in a mockup','What you approve is what ships, at every screen size and not just the one in the deck.'],
   'll+n8':['A pipeline that drafts, then asks you to approve','It types, you decide. The judgement is the part worth paying a person for.'],
   'll+pr':['Subtitles, cutdowns and versions in three languages','Transcription and translation done before the edit, not after it.'],
   'll+ps':['Image work at volume','Hundreds of variants described once. The machine does not get bored at number forty.'],
@@ -234,7 +234,7 @@
   'fg+pr+ps':['A product story told in stills and motion','Interface, photography and edit built to the same rules.'],
   'fg+pr+wb':['Product pages carried by video','Real screens, cut short, placed where the question comes up.'],
   'fg+ps+wb':['Interface work that survives real content','Designed with actual images and actual text, not placeholders.'],
-  'll+n8+pr':['A content engine for video','Scripts drafted, versions cut, delivery handled — you approve, it ships.'],
+  'll+n8+pr':['A content engine for video','Scripts drafted, versions cut, delivery handled. You approve, it ships.'],
   'll+n8+ps':['Creative production without the repetition','Written, generated and exported in one run.'],
   'll+n8+wb':['A site that captures, qualifies and replies on its own','The lead arrives, gets enriched and answered before you open your laptop.'],
   'll+pr+ps':['Post-production with the paperwork removed','Transcripts, versions and stills handled alongside the edit.'],
@@ -243,7 +243,7 @@
   'n8+pr+ps':['Delivery handled end to end','Grade, cut, export, rename, upload. The half of the job nobody puts on a showreel.'],
   'n8+pr+wb':['Video on the site, updated without you','New cut lands, page updates, nothing to remember.'],
   'n8+ps+wb':['A site whose assets keep themselves current','Imagery generated and swapped as the catalogue changes.'],
-  'pr+ps+wb':['A site carried by real footage and real images','Shot, finished and placed so it loads fast and still looks like you — not like a stock library.']
+  'pr+ps+wb':['A site carried by real footage and real images','Shot, finished and placed so it loads fast and still looks like you instead of a stock library.']
   };
 
   var sel=[],
@@ -265,7 +265,7 @@
       C.href='mailto:info@madebyjavier.com'
         +'?subject='+encodeURIComponent(strip(title))
         +'&body='+encodeURIComponent(
-          'Hi Javier,\n\nI came from your site — I put together '+tools+'.\n\n'
+          'Hi Javier,\n\nI came from your site and put together '+tools+'.\n\n'
           +'Here is what I am trying to do:\n\n');
     }
   }
@@ -281,7 +281,7 @@
 
     // every 1-, 2- and 3-tool selection is in the map; this only fires if one is ever removed
     paint('That one still needs a partner.',
-      'Try <span class="mix-add">n8n</span> or <span class="mix-add">After Effects</span> — those combine with everything here.');
+      'Try <span class="mix-add">n8n</span> or <span class="mix-add">After Effects</span>. Those combine with everything here.');
   }
 
   document.querySelectorAll('.tag[data-t]').forEach(function(btn){

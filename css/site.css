@@ -333,9 +333,16 @@ h2{
 .cline-v{font-size:15px;color:var(--muted)}
 .cline-v strong{color:var(--ink);font-weight:600}
 .cline-v ul{list-style:none;display:grid;gap:11px}
-/* em dash is ~1em wide — the indent has to clear it, not sit on it */
-.cline-v li{padding-left:1.9em;position:relative;line-height:1.55}
-.cline-v li::before{content:"—";position:absolute;left:0;top:0;color:var(--accent)}
+/* square bullet, the shape Hanken Grotesk gives "•". Drawn rather than typed so
+   the pulse ring hugs it instead of sitting off the glyph's ink.
+   Same rhythm as the hero badge .dot, in accent instead of green. */
+.cline-v li{padding-left:1.3em;position:relative;line-height:1.55}
+.cline-v li::before{
+  content:"";position:absolute;left:0;top:.55em;
+  width:7px;height:7px;border-radius:1.5px;background:var(--accent);
+  box-shadow:0 0 0 0 rgba(240,82,43,.5);animation:pulse-accent 1.5s infinite;
+}
+@keyframes pulse-accent{70%{box-shadow:0 0 0 7px rgba(240,82,43,0)}100%{box-shadow:0 0 0 0 rgba(240,82,43,0)}}
 /* placeholder metric — replace with the real number, then drop the class */
 .fill{background:rgba(240,82,43,.1);border-bottom:1.5px dotted var(--accent);
   color:var(--ink);font-weight:600;padding:0 3px;border-radius:3px}
