@@ -214,7 +214,7 @@
   'ai+fg+pr':['Brand and product on the same screen','Identity, interface, and the video that puts them in front of people.'],
   'ai+fg+ps':['Identity ready for every surface','Vector, interface and imagery drawn from one set of rules.'],
   'ai+fg+wb':['Brand, interface and site as one delivery','Design system straight through to the live page.'],
-  'ai+ll+n8':['On-brand content produced on demand','The template is yours; the words and assets fill themselves in.'],
+  'ai+ll+n8':['On-brand content, produced automatically','The template is yours; the words and assets fill themselves in.'],
   'ai+ll+pr':['Editorial video with a consistent voice','Written, titled and cut so every episode sounds like the same brand.'],
   'ai+ll+ps':['Visual campaigns written and drawn together','Concepts, copy and key visuals produced in the same pass.'],
   'ai+ll+wb':['A site that sounds like the brand it looks like','Identity and copy built together, not handed between two suppliers.'],
