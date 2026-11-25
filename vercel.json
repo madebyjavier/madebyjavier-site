@@ -32,6 +32,16 @@
       "source": "/work/",
       "destination": "/#work",
       "permanent": true
+    },
+    {
+      "source": "/work/nextrade",
+      "destination": "/work/prospect-finder-engine/",
+      "permanent": true
+    },
+    {
+      "source": "/work/nextrade/",
+      "destination": "/work/prospect-finder-engine/",
+      "permanent": true
     }
   ]
 }

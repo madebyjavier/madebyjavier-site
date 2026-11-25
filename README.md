@@ -11,7 +11,7 @@ portafolio/
 │   (/work redirects to /#work — set in vercel.json)
 │   ├── a-frame-of-distance/         motion template
 │   ├── yapi-kredi-play/             art-direction (campaign) template
-│   ├── nextrade/                    motion
+│   ├── prospect-finder-engine/                    motion
 │   ├── hsk-sigorta/                 art-direction (instagram) template
 │   ├── norlis-medya/  conversphere/  kids-boots/  co2nstruction/
 ├── assets/work/<project>/           loop.mp4 + poster.jpg (grid cover), still-NN.jpg, process images
@@ -32,7 +32,7 @@ loops (`<video data-loop>`), 1280×800, under ~1 MB, with a poster JPG.
 ## Adding a project
 
 1. **Duplicate a project folder**
-   `work/nextrade/` → `work/my-new-project/`
+   `work/prospect-finder-engine/` → `work/my-new-project/`
    The folder name becomes the URL: `/work/my-new-project`.
 
 2. **Open its `index.html` and change only these five blocks.**
