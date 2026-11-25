@@ -167,7 +167,7 @@ accentDots();
       busy=setTimeout(function(){
         apply(b.dataset.filter);
         requestAnimationFrame(function(){requestAnimationFrame(function(){parts.forEach(function(el){el.classList.remove('is-fading')})})});
-      },220);
+      },280);
       var top=document.getElementById('work');
       if(top&&top.getBoundingClientRect().top<0)top.scrollIntoView({behavior:'smooth'});
     });
@@ -330,4 +330,53 @@ accentDots();
   }
   document.addEventListener('pointerover',warm,{passive:true});
   document.addEventListener('touchstart',warm,{passive:true});
+})();
+
+/* ---- filter bar dock: once the bar scrolls under the nav it morphs into a
+   floating pill at the bottom of the screen, and back when you return.
+   FLIP: measure where it was, switch state, animate from there to here. ---- */
+(function(){
+  var bar=document.querySelector('.filters'),slot=document.querySelector('.filters-slot');
+  if(!bar||!slot)return;
+  var nav=document.querySelector('.nav'),foot=document.querySelector('.footer'),
+      still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches,
+      docked=false,ticking=false;
+  function keepSlot(){if(!docked)slot.style.minHeight=bar.offsetHeight+'px'}
+  function flip(on){
+    var a=bar.getBoundingClientRect();
+    bar.classList.toggle('docked',on);
+    if(still||!bar.animate)return;
+    var b=bar.getBoundingClientRect();
+    bar.animate([
+      {transform:'translate('+(a.left-b.left)+'px,'+(a.top-b.top)+'px) scale('+(a.width/b.width)+')',transformOrigin:'0 0'},
+      {transform:'none',transformOrigin:'0 0'}
+    ],{duration:520,easing:'cubic-bezier(.2,.8,.2,1)'});
+  }
+  function check(){
+    ticking=false;
+    var line=(nav?nav.offsetHeight:0);
+    var want=slot.getBoundingClientRect().bottom<line;
+    if(want!==docked){docked=want;flip(want)}
+    // at the end of the page the pill rests on top of the footer and scrolls with it
+    if(docked&&foot){
+      var lift=window.innerHeight-foot.getBoundingClientRect().top+24;
+      bar.style.bottom=lift>18?lift+'px':'';
+    }else bar.style.bottom='';
+  }
+  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(check)}},{passive:true});
+  window.addEventListener('resize',function(){keepSlot();check()});
+  keepSlot();check();
+})();
+
+/* ---- card titles: a hand-drawn underline draws itself under the title on hover.
+   Wraps the title text (everything before the subtitle span) and adds the SVG. ---- */
+(function(){
+  document.querySelectorAll('.wcap h2').forEach(function(h){
+    var wt=document.createElement('span');wt.className='wt';
+    while(h.firstChild&&!(h.firstChild.nodeType===1&&h.firstChild.tagName==='SPAN'))wt.appendChild(h.firstChild);
+    h.insertBefore(wt,h.firstChild);
+    wt.insertAdjacentHTML('beforeend',
+      '<svg class="anno" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true">'+
+      '<path pathLength="1" d="M1 6.5 C 18 4, 34 7.5, 52 5.5 S 84 3.5, 99 5"/></svg>');
+  });
 })();

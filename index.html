@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/site.css?v=4">
 <!-- Chrome/Edge: prerender a page as soon as the pointer rests on its link -->
 <script type="speculationrules">{"prerender":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>
 </head>
@@ -52,11 +52,13 @@
      Each card: data-cat = "motion", "art" or both. Cover = a 3–5 s muted loop + poster.
      Loops and posters live in assets/work/<project>/loop.mp4 + poster.jpg -->
 <main id="work" class="wrap">
+  <div class="filters-slot">
   <div class="filters" role="toolbar" aria-label="Filter work">
     <button type="button" data-filter="all" aria-pressed="true">All</button>
     <button type="button" data-filter="motion" aria-pressed="false">Motion</button>
     <button type="button" data-filter="art" aria-pressed="false">Art Direction</button>
     <button type="button" data-filter="loops" aria-pressed="false">Loops</button>
+  </div>
   </div>
 
   <div class="wgrid">
@@ -191,7 +193,7 @@
   </div>
 </footer>
 
-<script src="js/site.js"></script>
+<script src="js/site.js?v=4"></script>
 <!-- page views, referrers and countries. No cookies, nothing to consent to. -->
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
