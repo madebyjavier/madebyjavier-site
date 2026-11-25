@@ -5,19 +5,27 @@ browser and it works; push to Vercel and it works the same.
 
 ```
 portafolio/
-├── index.html                       →  /
+├── index.html                       →  /         hello + filterable work grid + loops
+├── about/index.html                 →  /about    photo, services, process, toolkit
 ├── work/
-│   ├── index.html                   →  /work
-│   ├── nextrade/index.html          →  /work/nextrade
-│   ├── a-frame-of-distance/index.html
-│   ├── conversphere/index.html
-│   └── co2nstruction/index.html
+│   (/work redirects to /#work — set in vercel.json)
+│   ├── a-frame-of-distance/         motion template
+│   ├── yapi-kredi-play/             art-direction (campaign) template
+│   ├── nextrade/                    motion
+│   ├── hsk-sigorta/                 art-direction (instagram) template
+│   ├── norlis-medya/  conversphere/  kids-boots/  co2nstruction/
+├── assets/work/<project>/           loop.mp4 + poster.jpg (grid cover), still-NN.jpg, process images
+├── assets/work/loops/               playground clips for the Loops section
 ├── css/site.css      ← all design lives here. One file, every page.
-├── js/site.js        ← scroll, card morph, tool mixer
-├── assets/           ← images
+├── js/site.js        ← loops (play only on screen), filters, vimeo, lightbox, mixer
 ├── vercel.json
 └── README.md
 ```
+
+### Grid cards
+Each card on the home page has `data-cat="motion"`, `"art"` or both. The filter
+buttons show cards whose `data-cat` contains the filter. Covers are muted 3–5 s
+loops (`<video data-loop>`), 1280×800, under ~1 MB, with a poster JPG.
 
 ---
 
