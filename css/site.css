@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&display=swap');
-
 /* ============================================================
    made by Javier — site stylesheet
    One file for every page. Edit here, it changes everywhere.
@@ -570,6 +568,21 @@ button.tag.on:hover{filter:brightness(1.08);color:#fff}
 .series p{color:var(--muted);font-size:15px;margin-top:10px}
 .series-imgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
 .series-imgs img{border-radius:8px;width:100%;aspect-ratio:1/1;object-fit:cover}
+
+/* ============ FILTER FADE ============
+   site.js adds .is-fading, swaps the cards while invisible, then removes it. */
+.wgrid,#loops{transition:opacity .22s ease}
+.is-fading{opacity:0}
+
+/* ============ PAGE FADE ============
+   Browsers with cross-document view transitions crossfade between pages.
+   The rest fade the new page in on load. */
+@view-transition{navigation:auto}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.3s}
+@supports not (view-transition-name:none){
+  body{animation:pageIn .35s ease both}
+}
+@keyframes pageIn{from{opacity:0}to{opacity:1}}
 
 /* ============ REVEAL ============ */
 .rv{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}

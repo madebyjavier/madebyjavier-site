@@ -156,9 +156,18 @@ accentDots();
     var grid=document.querySelector('.wgrid');
     if(grid)grid.classList.toggle('is-hidden',f==='loops');
   }
+  var parts=[document.querySelector('.wgrid'),loops].filter(Boolean),busy=null;
   btns.forEach(function(b){
     b.addEventListener('click',function(){
-      apply(b.dataset.filter);
+      if(b.getAttribute('aria-pressed')==='true')return;
+      btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+      // fade out, swap while invisible, fade back in
+      parts.forEach(function(el){el.classList.add('is-fading')});
+      clearTimeout(busy);
+      busy=setTimeout(function(){
+        apply(b.dataset.filter);
+        requestAnimationFrame(function(){requestAnimationFrame(function(){parts.forEach(function(el){el.classList.remove('is-fading')})})});
+      },220);
       var top=document.getElementById('work');
       if(top&&top.getBoundingClientRect().top<0)top.scrollIntoView({behavior:'smooth'});
     });
@@ -304,4 +313,21 @@ accentDots();
     img.addEventListener('click',function(){open(img)});
     img.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open(img)}});
   });
+})();
+
+/* ---- prefetch: when the pointer rests on an internal link, fetch that page
+   so the click opens it from cache. Chrome/Edge already prerender via the
+   speculationrules script in each <head>; this covers the other browsers. ---- */
+(function(){
+  if(HTMLScriptElement.supports&&HTMLScriptElement.supports('speculationrules'))return;
+  var done={};
+  function warm(e){
+    var a=e.target.closest&&e.target.closest('a[href]');
+    if(!a||a.origin!==location.origin||a.hash&&a.pathname===location.pathname)return;
+    var url=a.href.split('#')[0];
+    if(done[url])return;done[url]=1;
+    var l=document.createElement('link');l.rel='prefetch';l.href=url;document.head.appendChild(l);
+  }
+  document.addEventListener('pointerover',warm,{passive:true});
+  document.addEventListener('touchstart',warm,{passive:true});
 })();
